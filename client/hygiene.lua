@@ -6,16 +6,17 @@ Citizen.CreateThread(function()
         function(status) -- Visible calllback, if it return true the status will be visible
             return true
 			end, function(status)
-			status.remove(100)
+			status.remove(300)
     end)
     Citizen.CreateThread(function()
         Citizen.Wait(1000)
         while true do
             TriggerEvent('esx_status:getStatus', 'hygiene', function(status) 
-                hygiene = status.val
-            end)
-            TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
-                hunger = status.val  
+                print('tick', status.val)
+                if status.val <= 6 then
+                    TriggerServerEvent('renzu_hygiene:odoreffectsync')
+                end
+                --TriggerEvent('esx_status:remove', config.hygienestatus, config.hygieneremove)
             end)
 
 
@@ -180,11 +181,11 @@ AddEventHandler('renzu_hygiene:odoreffect', function(coords, id)
             if GetPlayerFromServerId(id) ~= PlayerId() then
                 LoadDict("switch@trevor@bear_floyds_face_smell")
                 TaskPlayAnim(PlayerPedId(), "switch@trevor@bear_floyds_face_smell", "bear_floyds_face_smell_loop_floyd", 8.0, -8.0, 3.0, 0, 0.0, 0, 0, 0)
-                TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'You feel uneasy because you smell something very bad..')
+                print('You feel uneasy because you smell something very bad..')
                 SetEntityHealth(PlayerPedId(),GetEntityHealth(PlayerPedId()) - config.badhygiene_hp_effect)
                 TriggerEvent('esx_status:add', config.badhygienestatus_effect, config.badhygiene_effect_value)
             else
-                TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'i Smell like shit')
+                print('i Smell like shit')
             end
         end
     end
@@ -413,5 +414,7 @@ function playsound(ecoord,max,file,maxvol)
 		})
 	end
 end
+
+
 
 
