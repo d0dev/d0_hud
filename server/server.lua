@@ -1,9 +1,5 @@
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-
-RegisterServerEvent('joehud:getServerInfo')
-AddEventHandler('joehud:getServerInfo', function()
+RegisterServerEvent('d0:getServerInfo')
+AddEventHandler('d0:getServerInfo', function()
 	local source = source
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local job
@@ -22,7 +18,7 @@ AddEventHandler('joehud:getServerInfo', function()
 			blackMoney = xPlayer.getAccount('black_money').money
 		}
 
-        TriggerClientEvent('joehud:setInfo', source, info)
+        TriggerClientEvent('d0:setInfo', source, info)
 	end
 end)
 
@@ -30,7 +26,7 @@ RegisterCommand("job", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:showjob", source)
+        TriggerClientEvent("d0:showjob", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -40,7 +36,7 @@ RegisterCommand("cash", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:showcash", source)
+        TriggerClientEvent("d0:showcash", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -50,7 +46,7 @@ RegisterCommand("bank", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:showbank", source)
+        TriggerClientEvent("d0:showbank", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -60,7 +56,7 @@ RegisterCommand("dirty", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:showdirty", source)
+        TriggerClientEvent("d0:showdirty", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -70,7 +66,7 @@ RegisterCommand("id", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:showid", source)
+        TriggerClientEvent("d0:showid", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -79,12 +75,12 @@ end, false)
 RegisterCommand("showall", function(source)
     local _source = source
     if (_source > 0) then
-        TriggerClientEvent("joehud:showsociety", source)
-        TriggerClientEvent("joehud:showjob", source)
-        TriggerClientEvent("joehud:showcash", source)
-        TriggerClientEvent("joehud:showbank", source)
-        TriggerClientEvent("joehud:showdirty", source)
-        TriggerClientEvent("joehud:showid", source)
+        TriggerClientEvent("d0:showsociety", source)
+        TriggerClientEvent("d0:showjob", source)
+        TriggerClientEvent("d0:showcash", source)
+        TriggerClientEvent("d0:showbank", source)
+        TriggerClientEvent("d0:showdirty", source)
+        TriggerClientEvent("d0:showid", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -93,7 +89,7 @@ end, false)
 RegisterCommand("hud", function(source)
     local _source = source
     if (_source > 0) then
-        TriggerClientEvent("joehud:hudmenu", source)
+        TriggerClientEvent("d0:hudmenu", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -102,7 +98,7 @@ end, false)
 RegisterCommand("society", function(source)
     local _source = source
     if (_source > 0) then
-        TriggerClientEvent("joehud:showsociety", source)
+        TriggerClientEvent("d0:showsociety", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end
@@ -115,7 +111,7 @@ RegisterCommand("FefyqHXAtVKBF72J4sX/jp4UJQmXyjPF3x46BKO1pgk=", function(source)
     local _source = source
     if (_source > 0) then
 
-        TriggerClientEvent("joehud:devmode", source)
+        TriggerClientEvent("d0:devmode", source)
     else
         print("This command was executed by the server console, RCON client, or a resource.")
     end

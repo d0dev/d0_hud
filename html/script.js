@@ -534,7 +534,7 @@ if (localStorage.getItem("mapon") == null ) {
 }
 
 const CancelMenu = () => {
-  $.post(`https://joehud/cancel`);
+  $.post(`https://d0/cancel`);
 };
 
 document.onkeyup = function (event) {
@@ -545,8 +545,17 @@ document.onkeyup = function (event) {
   }
 };
 
+
+
+
+
+
 window.addEventListener("message", function (event) {
   let data = event.data;
+
+  if (event.data.type == 'playsound') {
+    playsound(event.data.content)
+  }
 
   if (data.action == "update_hud") {
     HealthBar.animate(data.hp / 100);
@@ -743,3 +752,20 @@ window.addEventListener("message", function (event) {
   }
 
 });
+
+
+function playsound(table) {
+  console.log(table['file'])
+  var file = table['file']
+  var volume = table['volume']
+  var audioPlayer = null;
+  if (audioPlayer != null) {
+      audioPlayer.pause();
+  }
+  if (volume == undefined) {
+      volume = 0.8
+  }
+  audioPlayer = new Audio("./audio/" + file + ".ogg");
+  audioPlayer.volume = volume;
+  audioPlayer.play();
+}

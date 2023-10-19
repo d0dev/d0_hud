@@ -7,22 +7,6 @@ local speedBuffer, velBuffer  = {}, {}
 local Driving, Underwater, enableCruise, wasInCar, pedinVeh, beltOn = false, false, false, false, false, false
 local lastjob, lastcash, lastbank, lastdirty, lastsociety, society, hunger, thirst, player, vehicle, vehicleIsOn
 
-ESX = nil
-
-CreateThread(function()
-    while not ESX do
-        TriggerEvent('esx:getSharedObject', function(obj)
-            ESX = obj
-        end)
-        Wait(0)
-    end
-
-    while not ESX.GetPlayerData().job do
-	Wait(10)
-    end
-
-    ESX.PlayerData = ESX.GetPlayerData()
-end)
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
@@ -196,7 +180,7 @@ CreateThread(function()
             showweap = showweap
         })
 
-        TriggerServerEvent('joehud:getServerInfo')
+        TriggerServerEvent('d0:getServerInfo')
     end
 end)
 
@@ -244,8 +228,8 @@ end)
 --[[End of Threads]]--
 
 --[[Status Event]]--
-RegisterNetEvent('joehud:setInfo')
-AddEventHandler('joehud:setInfo', function(info)
+RegisterNetEvent('d0:setInfo')
+AddEventHandler('d0:setInfo', function(info)
         if ESX.PlayerData.job and ESX.PlayerData.job.grade_name and ESX.PlayerData.job.grade_name == 'boss' then
             ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
                 society = money
@@ -324,13 +308,13 @@ end)
 --[[End of Map]]--
 
 --[[Command Events]]
-RegisterNetEvent('joehud:devmode')
-AddEventHandler('joehud:devmode', function()
+RegisterNetEvent('d0:devmode')
+AddEventHandler('d0:devmode', function()
     SendNUIMessage({action = "devmode"})
 end, false)       
 
-RegisterNetEvent('joehud:showjob')
-AddEventHandler('joehud:showjob', function()
+RegisterNetEvent('d0:showjob')
+AddEventHandler('d0:showjob', function()
     TriggerEvent('chat:addMessage', {
         color = { 150, 75, 0},
         multiline = true,
@@ -338,8 +322,8 @@ AddEventHandler('joehud:showjob', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:showcash')
-AddEventHandler('joehud:showcash', function()
+RegisterNetEvent('d0:showcash')
+AddEventHandler('d0:showcash', function()
     TriggerEvent('chat:addMessage', {
         color = { 0, 240, 0},
         multiline = true,
@@ -347,8 +331,8 @@ AddEventHandler('joehud:showcash', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:showbank')
-AddEventHandler('joehud:showbank', function()
+RegisterNetEvent('d0:showbank')
+AddEventHandler('d0:showbank', function()
     TriggerEvent('chat:addMessage', {
         color = { 240, 0, 0},
         multiline = true,
@@ -356,8 +340,8 @@ AddEventHandler('joehud:showbank', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:showdirty')
-AddEventHandler('joehud:showdirty', function()
+RegisterNetEvent('d0:showdirty')
+AddEventHandler('d0:showdirty', function()
     TriggerEvent('chat:addMessage', {
         color = { 128, 128, 128},
         multiline = true,
@@ -365,8 +349,8 @@ AddEventHandler('joehud:showdirty', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:showid')
-AddEventHandler('joehud:showid', function()
+RegisterNetEvent('d0:showid')
+AddEventHandler('d0:showid', function()
     TriggerEvent('chat:addMessage', {
         color = { 0, 240, 0},
         multiline = true,
@@ -374,8 +358,8 @@ AddEventHandler('joehud:showid', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:showsociety')
-AddEventHandler('joehud:showsociety', function()
+RegisterNetEvent('d0:showsociety')
+AddEventHandler('d0:showsociety', function()
     TriggerEvent('chat:addMessage', {
         color = { 150, 75, 0},
         multiline = true,
@@ -383,8 +367,8 @@ AddEventHandler('joehud:showsociety', function()
       })
 end, false)   
 
-RegisterNetEvent('joehud:hudmenu')
-AddEventHandler('joehud:hudmenu', function()
+RegisterNetEvent('d0:hudmenu')
+AddEventHandler('d0:hudmenu', function()
     SetNuiFocus(true, true)
     SendNUIMessage({showhudmenu = true})
 end, false)   
