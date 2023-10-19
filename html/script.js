@@ -570,7 +570,7 @@ if (localStorage.getItem("mapon") == null ) {
 }
 
 const CancelMenu = () => {
-  $.post(`https://d0/cancel`);
+  $.post(`https://${GetParentResourceName()}/cancel`);
 };
 
 document.onkeyup = function (event) {
