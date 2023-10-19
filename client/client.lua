@@ -5,7 +5,7 @@ local speedfps = 125
 local minimap = RequestScaleformMovie("minimap")
 local speedBuffer, velBuffer  = {}, {}
 local Driving, Underwater, enableCruise, wasInCar, pedinVeh, beltOn = false, false, false, false, false, false
-local lastjob, lastcash, lastbank, lastdirty, lastsociety, society, hunger, thirst, player, vehicle, vehicleIsOn
+local lastjob, lastcash, lastbank, lastdirty, lastsociety, society, hunger, thirst, hygiene, player, vehicle, vehicleIsOn
 
 
 RegisterNetEvent('esx:playerLoaded')
@@ -240,6 +240,7 @@ AddEventHandler('d0:setInfo', function(info)
 
         TriggerEvent('esx_status:getStatus', 'hunger', function(status) hunger = status.val / 10000 end)
         TriggerEvent('esx_status:getStatus', 'thirst', function(status) thirst = status.val / 10000 end)
+        TriggerEvent('esx_status:getStatus', 'hygiene', function(status) hygiene = status.val / 10000 end)
 
         if Config.rpRadio then
             local radioStatus = exports["rp-radio"]:IsRadioOn()
@@ -278,6 +279,7 @@ AddEventHandler('d0:setInfo', function(info)
         stamina = 100 - GetPlayerSprintStaminaRemaining(PlayerId()), -- doesn't work with player variable
         hunger = hunger,
         thirst = thirst,
+        hygiene = hygiene,
         oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10 -- doesn't work with player variable
     })
 end)

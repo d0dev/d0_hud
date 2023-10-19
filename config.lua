@@ -24,7 +24,7 @@ config.poostatus = 'poop' -- registered status name
 config.peestatus = 'pee' -- registered status name
 config.hygienestatus  = 'hygiene' -- registered status name
 config.hygieneremove = 10 -- value to remove per tick (if using renzu_status check the multiplier)
-config.badhygienestatus_effect = 'stress' -- a status name to be affected if your hygiene is 0 (other player will experience this not the bad hygiened player)
+config.badhygienestatus_effect = 'hygiene' -- a status name to be affected if your hygiene is 0 (other player will experience this not the bad hygiened player)
 config.badhygiene_effect_value = 100 -- value to remove/add in status if some bad hygiened player is nearby
 config.badhygiene_hp_effect = 3 -- minus this value to players sorrounding hp
 config.thirst_to_pee = 0.01 -- thirst to pee convertion, pee will add if you gain thirst (ex. from drinking water item) 0.1 = 10% from add value of thirst

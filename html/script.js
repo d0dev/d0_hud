@@ -52,6 +52,16 @@ $(document).ready(function () {
     duration: 250,
     easing: "easeInOut",
   });
+
+  HygieneBar = new ProgressBar.Circle("#HygieneBar", {
+    color: "#ffa43b",
+    trailColor: "#a5743c",
+    strokeWidth: 12,
+    trailWidth: 12,
+    duration: 250,
+    easing: "easeInOut",
+  });
+
   
   WeaponOut = new ProgressBar.Circle("#gunout", {
     color: "#f35559",
@@ -359,6 +369,32 @@ if (localStorage.getItem("thriston") == null ) {
   localStorage.setItem('thriston', 'true');
 }
 
+var hygienetogglemenu = document.getElementById("hygieneonoff");
+function hygienetoggle() {
+  if (hygienetogglemenu.checked == true){
+    localStorage.setItem('hygieneon', 'true');
+    $("#HygieneBar").fadeIn()
+  } else {
+    $("#HygieneBar").fadeOut()
+    localStorage.setItem('hygieneon', 'false');
+  }
+}
+
+if (localStorage.getItem("hygieneon") == 'true') {
+  $("#HygieneBar").fadeIn()
+  hygienetogglemenu.checked = true;
+} else {
+  $("#HygieneBar").fadeOut()
+  hygienetogglemenu.checked = false;
+}
+
+if (localStorage.getItem("hygieneon") == null ) {
+  $("#HygieneBar").fadeIn()
+  hygienetogglemenu.checked = true;
+  localStorage.setItem('hygieneon', 'true');
+}
+
+
 var voicetogglemenu = document.getElementById("voiceonoff");
 function voicetoggle() {
   if (voicetogglemenu.checked == true){
@@ -562,6 +598,7 @@ window.addEventListener("message", function (event) {
     ArmourBar.animate(data.armor / 100);
     HungerBar.animate(data.hunger / 100);
     ThirstBar.animate(data.thirst / 100);
+    HygieneBar.animate(data.hygiene/100)
     StaminaBar.animate(data.stamina / 100)
   }
 
@@ -648,6 +685,9 @@ window.addEventListener("message", function (event) {
 
   if (data.hunger < 25) {
     $("#HungerIcon").toggleClass("flash");
+  }
+  if (data.hygiene < 25) {
+    $("#HygieneIcon").toggleClass("flash");
   }
 
   if (data.speed > 0) {

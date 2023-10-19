@@ -13,11 +13,9 @@ Citizen.CreateThread(function()
         while true do
             TriggerEvent('esx_status:getStatus', 'hygiene', function(status) 
                 hygiene = status.val
-                print(hygiene)
             end)
             TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
                 hunger = status.val  
-                print("hunger", hunger)
             end)
 
 
@@ -44,19 +42,15 @@ AddEventHandler('renzu_hygiene:takeshower', function(plyPed,showerpos,s,entity)
     local plyPed = PlayerPedId()
     local showerpos = showerpos
     if GetEntityModel(plyPed) == -1667301416 then
-        print(1)
         LoadDict("mp_safehouseshower@female@")
         LoadDict("anim@mp_yacht@shower@female@")
-        print(2)
     else
-        print(3)
         LoadDict("amb@world_human_bum_wash@male@high@idle_a")
         LoadDict("amb@world_human_bum_wash@male@high@base")
         LoadDict("amb@world_human_bum_wash@male@low@base")
         LoadDict("amb@world_human_bum_wash@male@low@idle_a")
         LoadDict("switch@michael@wash_face")
         LoadDict("anim@mp_yacht@shower@male@")
-        print(4)
     end
     if entity ~= nil then -- prop based
         showerpos = GetEntityCoords(entity)

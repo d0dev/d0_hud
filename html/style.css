@@ -239,6 +239,14 @@ bottom: 0.75vh;
   bottom: 1.2vh;
 }
 
+.fa-shower {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.5vh;
+  bottom: 1.2vh;
+}
+
 .fa-align-justify  {
   color: white;
   position: absolute;
